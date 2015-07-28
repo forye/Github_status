@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html ng-app="github_status">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Github status</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html 					{ overflow-y:scroll; }
+        body 					{ padding-top:50px; }
+        #buttons                { margin-bottom:50px; }
+    </style>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
+    <script src="controller.js"></script>
+
+
+</head>
+    <body ng-controller="mainController">
+        <div class="container">
+
+            <div class="jumbotron text-center">
+                <h1>Last  <span class="label label-info">{{ messagesList.length }}</span> Github messages</h1>
+            </div>
+            <div>
+                current status: {{statusIndicator.status}}
+            </div>
+           <!-- hidden divs-->
+            <div class="hiddenGreen" ng-show="isGood()" >
+                <img src = "res\succesbaby.jpg" style="width:100px;height: 100px">
+            </div>
+            <div class="hiddenYellow" ng-show="isMinor()" >
+                <img src = "res\Y0UJC.png" style="width:100px;height: 100px">
+            </div>
+            <div class="hiddenRed" ng-show="isMajor()" >
+                <img src = "res\mickymouse.jpg" style="width:100px;height: 100px">
+            </div>
+            <br>
+
+            <div id="buttons" class="row">
+                <div class="col-sm-8 col-sm-offset-2 text-center">
+
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="UpdateMessages()">Update Messages List</button>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="UpdateStatus()">Update Status </button>
+                    </form>
+                </div>
+            </div>
+
+            <br>
+            <div>
+                <table border=" 1px solid blue" cellpadding="2px">
+                    <td>Item #</td>
+                    <td>Created On</td>
+                    <td>Status</td>
+                    <td>Message</td>
+                    <tr ng-repeat="x in messagesList">
+                        <td>{{$index +1}}</td>
+                        <td>{{x.created_on}}</td>
+                        <td ng-style=" x.status==='good'  && {'background-color' : 'green'}
+                                || x.status==='minor' && {'background-color' : 'yellow'}
+                                || x.status==='major' && {'background-color' : 'red'}">{{x.status}}
+                        </td>
+                        <td>{{x.body}}</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </body>
+</html>

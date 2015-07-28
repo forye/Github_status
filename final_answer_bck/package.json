@@ -1,0 +1,12 @@
+{
+  "name": "GitHubStatus",
+  "version": "1.0.0",
+  "description": "Tracks Git-Hub Status and Availability",
+  "main": "server.js",
+  "author": "Idan",
+  "dependencies": {
+    "express": "~4.7.2",
+    "mongoose": "~3.6.2",
+    "request": "~2.60.0"
+  }
+}
